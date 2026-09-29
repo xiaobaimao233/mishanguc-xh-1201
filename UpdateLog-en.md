@@ -1,3 +1,5 @@
+> This is the upstream changelog. This fork does not maintain it. See README for fork changes.
+
 ## Update Log
 
 Note: Not all versions in this update log have been published yet. Please refer to the relevant pages on CurseForge and Modrinth, or the "Releases" section on GitHub.
