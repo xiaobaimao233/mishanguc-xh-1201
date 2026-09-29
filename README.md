@@ -1,4 +1,4 @@
-[English](README_en.md) | 中文
+[English](README-en.md) | 中文
 
 # 迷上城建 (非官方 1.20.1 Fabric 改版)
 
