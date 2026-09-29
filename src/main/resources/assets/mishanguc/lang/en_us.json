@@ -443,6 +443,7 @@
   "block.mishanguc.road_with_ys_and_bi_ba_line": "Road with Yellow S & Bi-BA Line",
   "block.mishanguc.road_with_yt_s_n_ba_line": "Road With YT Straight & N Bevel-Angle Line",
   "block.mishanguc.road_with_yt_s_wn_ba_line": "Road With YT Straight & WN Bevel-Angle Line",
+  "block.mishanguc.road_with_white_edge_line": "Road With White Edge Line",
   "block.mishanguc.simple_handrail": "Simple %s Handrail",
   "block.mishanguc.simple_handrail_central": "Simple %s Handrail (Central)",
   "block.mishanguc.simple_handrail_corner": "Simple %s Handrail (Corner)",
@@ -1112,5 +1113,11 @@
   "tag.item.mishanguc.yellow_wall_lights": "Yellow Wall Lights",
   "vertical_align.mishanguc.bottom": "Bottom aligned",
   "vertical_align.mishanguc.middle": "Vertically centered",
-  "vertical_align.mishanguc.top": "Top aligned"
+  "vertical_align.mishanguc.top": "Top aligned",
+  "LineType.normal": "Normal",
+  "LineType.double": "Double",
+  "LineType.thick": "Thick",
+  "LineType.edge": "Edge",
+  "LineType.access": "Access",
+  "LineType.special": "Special"
 }

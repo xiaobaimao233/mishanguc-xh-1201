@@ -443,6 +443,7 @@
   "block.mishanguc.road_with_ys_and_bi_ba_line": "黄色直线双斜线道路",
   "block.mishanguc.road_with_yt_s_n_ba_line": "黄色粗线普通斜线道路",
   "block.mishanguc.road_with_yt_s_wn_ba_line": "黄色粗线白色普通斜线道路",
+  "block.mishanguc.road_with_white_edge_line": "白色边缘线道路",
   "block.mishanguc.simple_handrail": "简单的%s栏杆",
   "block.mishanguc.simple_handrail_central": "简单的%s栏杆（中间）",
   "block.mishanguc.simple_handrail_corner": "简单的%s栏杆（角落）",
@@ -1112,5 +1113,11 @@
   "tag.item.mishanguc.yellow_wall_lights": "墙上的黄色灯",
   "vertical_align.mishanguc.bottom": "底部对齐",
   "vertical_align.mishanguc.middle": "垂直居中",
-  "vertical_align.mishanguc.top": "顶部对齐"
+  "vertical_align.mishanguc.top": "顶部对齐",
+  "LineType.normal": "普通",
+  "LineType.double": "双",
+  "LineType.thick": "粗",
+  "LineType.edge": "边缘",
+  "LineType.access": "出入口",
+  "LineType.special": "特殊"
 }

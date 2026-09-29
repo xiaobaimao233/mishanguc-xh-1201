@@ -165,7 +165,7 @@ tasks.register('curseforge', TaskPublishCurseForge) {
 }
 
 modrinth {
-    println "Modrinth 令牌：${token.get() instanceof String ? token.get().replaceAll("^(.+?)(.{0,6})\$", (s, a, b) -> a.replaceAll(".", "*") + b) : token.get()}"
+    //println "Modrinth 令牌：${token.get() instanceof String ? token.get().replaceAll("^(.+?)(.{0,6})\$", (s, a, b) -> a.replaceAll(".", "*") + b) : token.get()}"
 
     projectId = "rItLmRo4" // 迷上城建模组的 Modrinth ID
     versionNumber = project.mod_version + '+mc' + project.minecraft_version
