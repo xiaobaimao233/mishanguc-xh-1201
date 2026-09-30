@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=east,mirror=false,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=false,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=false,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_top",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=true,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=true,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=true,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored_top",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=north,mirror=false,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=false,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=false,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_top",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=true,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=true,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=true,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored_top",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=south,mirror=false,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=false,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=false,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_top",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=true,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=true,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=true,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored_top",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=west,mirror=false,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=false,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=false,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_top",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=true,type=bottom": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=true,type=double": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=true,type=top": {
+      "model": "mishanguc:block/road_slab_with_white_offset_access_end_line_mirrored_top",
+      "uvlock": false,
+      "y": 180
+    }
+  }
+}

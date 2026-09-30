@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "facing=east,mirror=false": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=east,mirror=true": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 0
+    },
+    "facing=north,mirror=false": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=north,mirror=true": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 270
+    },
+    "facing=south,mirror=false": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=south,mirror=true": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 90
+    },
+    "facing=west,mirror=false": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line",
+      "uvlock": false,
+      "y": 180
+    },
+    "facing=west,mirror=true": {
+      "model": "mishanguc:block/road_with_white_offset_access_end_line_mirrored",
+      "uvlock": false,
+      "y": 180
+    }
+  }
+}

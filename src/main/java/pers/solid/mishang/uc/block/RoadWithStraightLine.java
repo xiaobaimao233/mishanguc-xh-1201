@@ -122,7 +122,17 @@ public interface RoadWithStraightLine extends Road {
                         "XXX",
                         "***"
                 };
-                case EDGE -> new String[]{ // 新增：边缘线使用普通单线配方
+                case EDGE -> new String[]{
+                        " * ",
+                        "XXX",
+                        " * "
+                };
+                case ACCESS -> new String[]{
+                        "***",
+                        "XXX",
+                        "***"
+                };
+                case SPECIAL -> new String[]{
                         " * ",
                         "XXX",
                         " * "

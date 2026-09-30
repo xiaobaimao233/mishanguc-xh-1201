@@ -84,6 +84,14 @@ java {
     withSourcesJar()
 }
 
+sourceSets {
+    main {
+        resources {
+            srcDirs += 'src/main/generated'
+        }
+    }
+}
+
 jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}" }

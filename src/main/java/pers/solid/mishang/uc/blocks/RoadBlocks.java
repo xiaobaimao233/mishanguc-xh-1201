@@ -28,6 +28,16 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithStraightLine.Impl ROAD_WITH_WHITE_DOUBLE_LINE = new RoadWithStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_double_line");
     /**
+     * 白色双线窄间距。
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_WHITE_DOUBLE_LINE2 = new RoadWithStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_double_line2");
+    /**
+     * 白色双线宽间距。
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_WHITE_DOUBLE_LINE3 = new RoadWithStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_double_line3");
+    /**
      * 白色粗线。
      */
     @Cutout
@@ -44,6 +54,17 @@ public final class RoadBlocks extends MishangucBlocks {
                     "white_straight_edge_line"
             );
     /**
+     * 公交专用线
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_WHITE_BUS_LINE =
+            new RoadWithStraightLine.Impl(
+                    WHITE_ROAD_SETTINGS,
+                    LineColor.WHITE,
+                    LineType.SPECIAL,
+                    "white_straight_bus_line"
+            );
+    /**
      * 黄色直线
      */
     @Cutout
@@ -54,10 +75,31 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithStraightLine.Impl ROAD_WITH_YELLOW_DOUBLE_LINE = new RoadWithStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, "yellow_straight_double_line");
     /**
+     * 双黄线窄间距
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_YELLOW_DOUBLE_LINE2 = new RoadWithStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, "yellow_straight_double_line2");
+    /**
+     * 双黄线宽间距
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_YELLOW_DOUBLE_LINE3 = new RoadWithStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, "yellow_straight_double_line3");
+    /**
      * 粗黄线
      */
     @Cutout
     public static final RoadWithStraightLine.Impl ROAD_WITH_YELLOW_THICK_LINE = new RoadWithStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.THICK, "yellow_straight_thick_line");
+    /**
+     * 20cm 黄色边缘线（直边线）。
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_YELLOW_EDGE_LINE =
+            new RoadWithStraightLine.Impl(
+                    WHITE_ROAD_SETTINGS,
+                    LineColor.YELLOW,
+                    LineType.EDGE,
+                    "yellow_straight_edge_line"
+            );
     /**
      * <h3>混色双线</h3>
      * 白色和黄色混合的双直线道路。
@@ -71,12 +113,37 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @Cutout
     public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_WHITE_OFFSET_LINE = new RoadWithOffsetStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL, "white_offset_straight_line", 2);
-
+    /**
+     * 白色偏移边缘线。
+     */
+    @Cutout
+    public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_WHITE_OFFSET_EDGE_LINE = new RoadWithOffsetStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE, "white_offset_straight_edge_line", 2);
+    /**
+     * 白色偏移出入口线（虚线部分）。
+     */
+    @Cutout
+    public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_WHITE_OFFSET_ACCESS_LINE = new RoadWithOffsetStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.ACCESS, "white_offset_straight_access_line", 2);
+    /**
+     * 白色偏移出入口线（中间部分）。
+     */
+    @Cutout
+    public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_WHITE_OFFSET_ACCESS_MID_LINE = new RoadWithOffsetStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.ACCESS, "white_offset_straight_access_mid_line", 2);
+    /**
+     * 白色偏移出入口线（末端部分）。
+     */
+    @Cutout
+    public static final RoadWithOffsetAccessLine.Impl ROAD_WITH_WHITE_OFFSET_ACCESS_END_LINE =
+            new RoadWithOffsetAccessLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.ACCESS, "white_offset_straight_access_end_side_line", 2);
     /**
      * 偏移的黄线。
      */
     @Cutout
     public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_YELLOW_OFFSET_LINE = new RoadWithOffsetStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.NORMAL, "yellow_offset_straight_line", 2);
+    /**
+     * 偏移的黄边缘线。
+     */
+    @Cutout
+    public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_YELLOW_OFFSET_EDGE_LINE = new RoadWithOffsetStraightLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.EDGE, "yellow_offset_straight_edge_line", 2);
     /**
      * 白色的半双线。
      */
@@ -145,6 +212,12 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_THICK_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.THICK, true, "white_bevel_angle_thick_line");
     /**
+     * 白色边缘斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_EDGE_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE, true, "white_bevel_angle_edge_line");
+    /**
      * 黄色斜线。
      */
     @Cutout
@@ -161,6 +234,12 @@ public final class RoadBlocks extends MishangucBlocks {
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_THICK_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.THICK, true, "yellow_bevel_angle_thick_line");
+    /**
+     * 黄色边缘斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_EDGE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.THICK, true, "yellow_bevel_angle_edge_line");
     /**
      * <h3>有偏移的直角</h3>
      * 白色一侧向外偏移的直角。
@@ -446,6 +525,8 @@ public final class RoadBlocks extends MishangucBlocks {
                 case DOUBLE -> ROAD_WITH_WHITE_DOUBLE_LINE;
                 case THICK -> ROAD_WITH_WHITE_THICK_LINE;
                 case EDGE -> ROAD_WITH_WHITE_EDGE_LINE;
+                case ACCESS -> ROAD_WITH_WHITE_OFFSET_ACCESS_LINE;
+                case SPECIAL -> ROAD_WITH_WHITE_BUS_LINE;
                 default -> throw new UnsupportedOperationException(
                         String.format("Cannot determine white block with [type=%s]", lineType.asString())
                 );
@@ -454,6 +535,7 @@ public final class RoadBlocks extends MishangucBlocks {
                 case NORMAL -> ROAD_WITH_YELLOW_LINE;
                 case DOUBLE -> ROAD_WITH_YELLOW_DOUBLE_LINE;
                 case THICK -> ROAD_WITH_YELLOW_THICK_LINE;
+                case EDGE -> ROAD_WITH_YELLOW_EDGE_LINE;
                 default -> throw new UnsupportedOperationException(
                         String.format("Cannot determine yellow block with [type=%s]", lineType.asString())
                 );
