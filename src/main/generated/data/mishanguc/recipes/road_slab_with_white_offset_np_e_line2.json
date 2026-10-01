@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "mishanguc:road_with_white_offset_np_e_line2"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "mishanguc:road_slab_with_white_offset_np_e_line2"
+  },
+  "show_notification": true
+}

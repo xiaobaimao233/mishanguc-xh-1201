@@ -23,13 +23,17 @@ public interface RoadWithCrossLine extends Road {
   @Override
   default RoadConnectionState getConnectionStateOf(BlockState state, Direction direction) {
     return Road.super
-        .getConnectionStateOf(state, direction)
-        .or(new RoadConnectionState(RoadConnectionState.WhetherConnected.CONNECTED, getLineColor(state, direction), EightHorizontalDirection.of(direction), LineType.NORMAL));
+            .getConnectionStateOf(state, direction)
+            .or(new RoadConnectionState(RoadConnectionState.WhetherConnected.CONNECTED, getLineColor(state, direction), EightHorizontalDirection.of(direction), LineType.NORMAL));
   }
 
   class Impl extends AbstractRoadBlock implements RoadWithCrossLine {
     public Impl(Settings settings, LineColor lineColor) {
-      super(settings, lineColor, LineType.NORMAL);
+      this(settings, lineColor, LineType.NORMAL);
+    }
+
+    public Impl(Settings settings, LineColor lineColor, LineType lineType) {
+      super(settings, lineColor, lineType);
     }
 
     @Override
@@ -39,24 +43,27 @@ public interface RoadWithCrossLine extends Road {
 
     @Override
     protected <B extends Block & Road> void registerBaseOrSlabModels(B road, BlockStateModelGenerator blockStateModelGenerator) {
+      final String crossTexture = lineType == LineType.NORMAL
+              ? lineColor.asString() + "_cross_line"
+              : lineColor.asString() + "_cross_" + lineType.asString() + "_line";
+
       final FasterTextureMap textures = new FasterTextureMap().base("asphalt")
-          .lineSide(MishangUtils.composeStraightLineTexture(lineColor, LineType.NORMAL))
-          .lineTop(lineColor.asString() + "_cross_line");
+              .lineSide(MishangUtils.composeStraightLineTexture(lineColor, lineType))
+              .lineTop(crossTexture);
       final Identifier modelId = road.uploadModel("_with_cross_line", textures, blockStateModelGenerator, MishangucTextureKeys.BASE, MishangucTextureKeys.LINE_SIDE, MishangucTextureKeys.LINE_TOP);
       blockStateModelGenerator.blockStateCollector.accept(road.composeState(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(road, modelId)));
     }
 
-
     @Override
     public CraftingRecipeJsonBuilder getPaintingRecipe(Block base, Block self) {
       return ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, self, 4)
-          .pattern("*X*")
-          .pattern("X*X")
-          .pattern("*X*")
-          .input('*', lineColor.getIngredient())
-          .input('X', base)
-          .criterion("has_ingredient", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
-          .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
+              .pattern("*X*")
+              .pattern("X*X")
+              .pattern("*X*")
+              .input('*', lineColor.getIngredient())
+              .input('X', base)
+              .criterion("has_ingredient", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
+              .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
     }
   }
 }

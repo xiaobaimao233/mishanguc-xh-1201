@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_road_with_white_offset_np_m_line": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "mishanguc:road_with_white_offset_np_m_line"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mishanguc:road_slab_with_white_offset_np_m_line"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_road_with_white_offset_np_m_line",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mishanguc:road_slab_with_white_offset_np_m_line"
+    ]
+  },
+  "sends_telemetry_event": false
+}

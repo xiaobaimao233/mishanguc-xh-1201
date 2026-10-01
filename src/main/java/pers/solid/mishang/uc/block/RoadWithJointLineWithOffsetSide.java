@@ -39,14 +39,7 @@ import java.util.List;
  * 类似于 {@link RoadWithJointLine}，不过较短的那一条线是被偏移的。
  */
 public interface RoadWithJointLineWithOffsetSide extends Road {
-  /**
-   * 道路方块中，偏移半线与正中直线围成的面积范围较小的那个直角。<br>
-   * 不同于{@link RoadWithJointLine#FACING}，那个是正对的水平方向，而这个是斜角水平方向。
-   */
   EnumProperty<HorizontalCornerDirection> FACING = MishangucProperties.HORIZONTAL_CORNER_FACING;
-  /**
-   * 道路方块中，正中直线所在的轴。
-   */
   Property<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;
 
   @Override
@@ -61,11 +54,11 @@ public interface RoadWithJointLineWithOffsetSide extends Road {
   @Override
   default RoadConnectionState getConnectionStateOf(BlockState state, Direction direction) {
     return RoadConnectionState.of(
-        state.get(FACING).hasDirection(direction) || state.get(AXIS).test(direction),
-        getLineColor(state, direction),
-        EightHorizontalDirection.of(direction.getOpposite()),
-        getLineType(state, direction),
-        state.get(AXIS).test(direction) ? null : new LineOffset(state.get(FACING).getDirectionInAxis(state.get(AXIS)), offsetLevel()));
+            state.get(FACING).hasDirection(direction) || state.get(AXIS).test(direction),
+            getLineColor(state, direction),
+            EightHorizontalDirection.of(direction.getOpposite()),
+            getLineType(state, direction),
+            state.get(AXIS).test(direction) ? null : new LineOffset(state.get(FACING).getDirectionInAxis(state.get(AXIS)), offsetLevel()));
   }
 
   @Override
@@ -77,23 +70,23 @@ public interface RoadWithJointLineWithOffsetSide extends Road {
   default BlockState rotateRoad(BlockState state, BlockRotation rotation) {
     final Direction.Axis axis = state.get(AXIS);
     return state
-        .with(FACING, state.get(FACING).rotate(rotation))
-        .with(AXIS, MishangUtils.rotateAxis(rotation, axis));
+            .with(FACING, state.get(FACING).rotate(rotation))
+            .with(AXIS, MishangUtils.rotateAxis(rotation, axis));
   }
 
   @Override
   default BlockState withPlacementState(BlockState state, ItemPlacementContext ctx) {
     final HorizontalCornerDirection facing = HorizontalCornerDirection.fromRotation(ctx.getPlayerYaw());
     return state
-        .with(
-            FACING,
-            ctx.getPlayer() != null && ctx.getPlayer().isSneaking() ? facing.getOpposite() : facing)
-        .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
+            .with(
+                    FACING,
+                    ctx.getPlayer() != null && ctx.getPlayer().isSneaking() ? facing.getOpposite() : facing)
+            .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
   }
 
   @Override
   default void appendRoadTooltip(
-      ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+          ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
     Road.super.appendRoadTooltip(stack, world, tooltip, options);
     tooltip.add(TextBridge.translatable("block.mishanguc.tooltip.road_with_joint_line_with_offset_side.1").formatted(Formatting.GRAY));
     tooltip.add(TextBridge.translatable("block.mishanguc.tooltip.road_with_joint_line_with_offset_side.2").formatted(Formatting.GRAY));
@@ -110,24 +103,50 @@ public interface RoadWithJointLineWithOffsetSide extends Road {
     protected final String lineTop;
     private final int offsetLevel;
 
-    /**
-     * 由不带偏移的 T 字形道路映射到带有偏移的 T 字形道路的映射。这里的偏移，是指的只有半边的那条线路的偏移。
-     */
     public static final BiMap<RoadWithJointLine.Impl, RoadWithJointLineWithOffsetSide.Impl> OFFSET_ROADS = HashBiMap.create();
 
+    /**
+     * 原版便捷构造函数：引用一个已有的不带偏移的 T 字形方块，自动拼贴图名，并登记到 OFFSET_ROADS。
+     */
     public Impl(Settings settings, RoadWithJointLine.Impl block, String lineTop, int offsetLevel) {
       this(settings, block.lineColor, block.lineColorSide, block.lineType, block.lineTypeSide, lineTop, offsetLevel);
       OFFSET_ROADS.put(block, this);
     }
 
+    /**
+     * 原版完整构造函数：自动拼贴图名。
+     */
     public Impl(Settings settings, LineColor lineColor, LineColor lineColorSide, LineType lineType, LineType lineTypeSide, String lineTop, int offsetLevel) {
+      this(settings, lineColor, lineColorSide, lineType, lineTypeSide,
+              MishangUtils.composeStraightLineTexture(lineColor, lineType),
+              lineColorSide.asString() + "_offset_straight_line",
+              lineTop, offsetLevel);
+    }
+
+    /**
+     * 新构造函数：手动指定 lineSide / lineSide2 的贴图名。
+     * 用于 STOP 线等自定义贴图。
+     */
+    public Impl(Settings settings, LineColor lineColor, LineColor lineColorSide, LineType lineType, LineType lineTypeSide,
+                String lineSide, String lineSide2, String lineTop, int offsetLevel) {
       super(settings, lineColor, lineType);
       this.lineColorSide = lineColorSide;
       this.lineTypeSide = lineTypeSide;
       this.lineTop = lineTop;
+      this.lineSide = lineSide;
+      this.lineSide2 = lineSide2;
       this.offsetLevel = offsetLevel;
-      lineSide = MishangUtils.composeStraightLineTexture(lineColor, lineType);
-      lineSide2 = lineColorSide.asString() + "_offset_straight_line";
+    }
+
+    /**
+     * 新便捷构造函数：引用一个已有的不带偏移的 T 字形方块，手动指定贴图名，并登记到 OFFSET_ROADS。
+     */
+    public Impl(Settings settings, RoadWithJointLine.Impl block,
+                String lineSide, String lineSide2,
+                String lineTop, int offsetLevel) {
+      this(settings, block.lineColor, block.lineColorSide, block.lineType, block.lineTypeSide,
+              lineSide, lineSide2, lineTop, offsetLevel);
+      OFFSET_ROADS.put(block, this);
     }
 
     @Override
@@ -141,20 +160,17 @@ public interface RoadWithJointLineWithOffsetSide extends Road {
       final Identifier modelId = road.uploadModel("_with_joint_line", textures, blockStateModelGenerator, MishangucTextureKeys.BASE, MishangucTextureKeys.LINE_SIDE, MishangucTextureKeys.LINE_SIDE2, MishangucTextureKeys.LINE_TOP);
       final Identifier mirroredModelId = road.uploadModel("_with_joint_line_mirrored", "_mirrored", textures, blockStateModelGenerator, MishangucTextureKeys.BASE, MishangucTextureKeys.LINE_SIDE, MishangucTextureKeys.LINE_SIDE2, MishangucTextureKeys.LINE_TOP);
       final BlockStateVariantMap.DoubleProperty<HorizontalCornerDirection, Direction.Axis> map = BlockStateVariantMap.create(FACING, AXIS);
-      // 一侧的短线所朝向的方向。
       for (Direction direction : Direction.Type.HORIZONTAL) {
         final @NotNull Direction offsetDirection1 = direction.rotateYClockwise();
-        // direction 的右偏方向
         final @NotNull HorizontalCornerDirection facing1 = HorizontalCornerDirection.fromDirections(direction, offsetDirection1);
         final @NotNull Direction offsetDirection2 = direction.rotateYCounterclockwise();
-        // direction 的左偏方向
         final @NotNull HorizontalCornerDirection facing2 = HorizontalCornerDirection.fromDirections(direction, offsetDirection2);
         map
-            .register(facing1, offsetDirection1.getAxis(),
-                BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(MishangUtils.DIRECTION_Y_VARIANT, direction))
-            .register(facing2, offsetDirection2.getAxis(),
-                BlockStateVariant.create().put(VariantSettings.MODEL, mirroredModelId)
-                    .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
+                .register(facing1, offsetDirection1.getAxis(),
+                        BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(MishangUtils.DIRECTION_Y_VARIANT, direction))
+                .register(facing2, offsetDirection2.getAxis(),
+                        BlockStateVariant.create().put(VariantSettings.MODEL, mirroredModelId)
+                                .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
       }
       blockStateModelGenerator.blockStateCollector.accept(road.composeState(VariantsBlockStateSupplier.create(road).coordinate(map)));
     }
@@ -191,12 +207,12 @@ public interface RoadWithJointLineWithOffsetSide extends Road {
         base2 = ((AbstractRoadBlock) base2).getRoadSlab();
       }
       final ShapedRecipeJsonBuilder recipe = ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, self, 3)
-          .pattern("a  ")
-          .pattern("XXX")
-          .input('a', lineColorSide.getIngredient())
-          .input('X', base2)
-          .criterion("has_" + lineColorSide.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColorSide.getIngredient()))
-          .criterion(RecipeProvider.hasItem(base2), RecipeProvider.conditionsFromItem(base2));
+              .pattern("a  ")
+              .pattern("XXX")
+              .input('a', lineColorSide.getIngredient())
+              .input('X', base2)
+              .criterion("has_" + lineColorSide.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColorSide.getIngredient()))
+              .criterion(RecipeProvider.hasItem(base2), RecipeProvider.conditionsFromItem(base2));
       if (lineColorSide != lineColor) {
         recipe.criterion("has_" + lineColor.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColor.getIngredient()));
       }

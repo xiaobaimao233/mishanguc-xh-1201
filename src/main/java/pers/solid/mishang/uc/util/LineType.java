@@ -26,6 +26,14 @@ public enum LineType implements StringIdentifiable {
      */
     EDGE,
     /**
+     * 细线。
+     */
+    THIN,
+    /**
+     * 出租车相关。
+     */
+    TAXI,
+    /**
      * 专用道/匝道。
      */
     ACCESS,

@@ -46,15 +46,15 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
   @Override
   default BlockState rotateRoad(BlockState state, BlockRotation rotation) {
     return RoadWithAngleLine.super
-        .rotateRoad(state, rotation)
-        .with(AXIS, MishangUtils.rotateAxis(rotation, state.get(AXIS)));
+            .rotateRoad(state, rotation)
+            .with(AXIS, MishangUtils.rotateAxis(rotation, state.get(AXIS)));
   }
 
   @Override
   default BlockState withPlacementState(BlockState state, ItemPlacementContext ctx) {
     return RoadWithAngleLine.super
-        .withPlacementState(state, ctx)
-        .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
+            .withPlacementState(state, ctx)
+            .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
   }
 
   class Impl extends RoadWithAngleLine.Impl implements RoadWithDiffAngleLine {
@@ -62,14 +62,35 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
     public final LineType lineType2;
     private final String lineSide2;
 
+    /**
+     * 原版构造函数：lineSide 自动按 (lineColor, lineType) 拼接。
+     */
     public Impl(
-        Settings settings,
-        LineColor lineColor,
-        LineColor lineColor2,
-        LineType lineType,
-        LineType lineType2,
-        boolean isBevel, String lineSide2, String lineTop) {
-      super(settings, lineColor, lineType, isBevel, lineTop);
+            Settings settings,
+            LineColor lineColor,
+            LineColor lineColor2,
+            LineType lineType,
+            LineType lineType2,
+            boolean isBevel, String lineSide2, String lineTop) {
+      this(settings, lineColor, lineColor2, lineType, lineType2, isBevel,
+              MishangUtils.composeStraightLineTexture(lineColor, lineType),
+              lineSide2, lineTop);
+    }
+
+    /**
+     * 新构造函数：lineSide 由调用者手动指定。
+     */
+    public Impl(
+            Settings settings,
+            LineColor lineColor,
+            LineColor lineColor2,
+            LineType lineType,
+            LineType lineType2,
+            boolean isBevel,
+            String lineSide,
+            String lineSide2,
+            String lineTop) {
+      super(settings, lineColor, lineType, lineSide, isBevel, lineTop);
       this.lineColor2 = lineColor2;
       this.lineType2 = lineType2;
       this.lineSide2 = lineSide2;
@@ -106,36 +127,52 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
         // direction 的左偏方向
         final @NotNull HorizontalCornerDirection facing2 = HorizontalCornerDirection.fromDirections(direction, offsetDirection2);
         map
-            .register(
-                facing1, direction.getAxis(),
-                BlockStateVariant.create().put(VariantSettings.MODEL, id).put(MishangUtils.DIRECTION_Y_VARIANT, direction))
-            .register(
-                facing2, direction.getAxis(),
-                BlockStateVariant.create().put(VariantSettings.MODEL, mirroredId)
-                    .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
+                .register(
+                        facing1, direction.getAxis(),
+                        BlockStateVariant.create().put(VariantSettings.MODEL, id).put(MishangUtils.DIRECTION_Y_VARIANT, direction))
+                .register(
+                        facing2, direction.getAxis(),
+                        BlockStateVariant.create().put(VariantSettings.MODEL, mirroredId)
+                                .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
       }
       blockStateModelGenerator.blockStateCollector.accept(road.composeState(VariantsBlockStateSupplier.create(road).coordinate(map)));
     }
 
     private static final String[] NORMAL_PATTERN = {
-        " a ",
-        "bXX",
-        " X "
+            " a ",
+            "bXX",
+            " X "
     };
     private static final String[] HALF_THICK_PATTERN = {
-        "aaa",
-        "bXX",
-        " X "
+            "aaa",
+            "bXX",
+            " X "
     };
     private static final String[] HALF_DOUBLE_PATTERN = {
-        "ba ",
-        " XX",
-        "bX "
+            "ba ",
+            " XX",
+            "bX "
     };
     private static final String[] THICK_AND_DOUBLE_PATTERN = {
-        "baa",
-        "aXX",
-        "bX "
+            "baa",
+            "aXX",
+            "bX "
+    };
+    /**
+     * DOUBLE + DOUBLE：两边都占 2 格。
+     */
+    private static final String[] DOUBLE_AND_DOUBLE_PATTERN = {
+            "ba ",
+            "bXX",
+            " a "
+    };
+    /**
+     * DOUBLE + NORMAL：第一边占 2 格，第二边占 1 格。
+     */
+    private static final String[] DOUBLE_AND_NORMAL_PATTERN = {
+            " aa",
+            "bXX",
+            " X "
     };
 
     private static String[] composePattern(LineType lineType, LineType lineType2) {
@@ -151,6 +188,12 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
         } else if (lineType2 == LineType.NORMAL) {
           return NORMAL_PATTERN;
         }
+      } else if (lineType == LineType.DOUBLE) {
+        if (lineType2 == LineType.DOUBLE) {
+          return DOUBLE_AND_DOUBLE_PATTERN;
+        } else if (lineType2 == LineType.NORMAL) {
+          return DOUBLE_AND_NORMAL_PATTERN;
+        }
       }
       throw new IllegalArgumentException(String.format("Cannot determine patterns for [%s, %s]", lineType.asString(), lineType2.asString()));
     }
@@ -159,14 +202,14 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
     public CraftingRecipeJsonBuilder getPaintingRecipe(Block base, Block self) {
       final String[] composePattern = composePattern(lineType, lineType2);
       final ShapedRecipeJsonBuilder recipe = ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, self, 3)
-          .pattern(composePattern[0])
-          .pattern(composePattern[1])
-          .pattern(composePattern[2])
-          .input('a', lineColor.getIngredient())
-          .input('b', lineColor2.getIngredient())
-          .input('X', base)
-          .criterion("has_" + lineColor.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
-          .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
+              .pattern(composePattern[0])
+              .pattern(composePattern[1])
+              .pattern(composePattern[2])
+              .input('a', lineColor.getIngredient())
+              .input('b', lineColor2.getIngredient())
+              .input('X', base)
+              .criterion("has_" + lineColor.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
+              .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
       if (lineColor != lineColor2) {
         recipe.criterion("has_" + lineColor2.asString() + "_paint", RecipeProvider.conditionsFromTag(lineColor2.getIngredient()));
       }

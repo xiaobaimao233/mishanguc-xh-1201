@@ -91,18 +91,40 @@ public interface RoadWithJointLine extends Road {
         protected final String lineSide;
         protected final String lineSide2;
 
+        /**
+         * 原版构造函数：lineSide / lineSide2 自动按颜色和线型拼接。
+         */
         public Impl(
                 Settings settings,
                 LineColor lineColor,
                 LineColor lineColorSide,
                 LineType lineType,
                 LineType lineTypeSide, String lineTop) {
+            this(settings, lineColor, lineColorSide, lineType, lineTypeSide,
+                    MishangUtils.composeStraightLineTexture(lineColor, lineType),
+                    MishangUtils.composeStraightLineTexture(lineColorSide, lineTypeSide),
+                    lineTop);
+        }
+
+        /**
+         * 新构造函数：手动指定 lineSide / lineSide2 的贴图名。
+         * 用于 STOP 线等自定义贴图，避免自动拼出来的名字对不上。
+         */
+        public Impl(
+                Settings settings,
+                LineColor lineColor,
+                LineColor lineColorSide,
+                LineType lineType,
+                LineType lineTypeSide,
+                String lineSide,
+                String lineSide2,
+                String lineTop) {
             super(settings, lineColor, lineType);
             this.lineColorSide = lineColorSide;
             this.lineTypeSide = lineTypeSide;
             this.lineTop = lineTop;
-            lineSide = MishangUtils.composeStraightLineTexture(this.lineColor, this.lineType);
-            lineSide2 = MishangUtils.composeStraightLineTexture(this.lineColorSide, this.lineTypeSide);
+            this.lineSide = lineSide;
+            this.lineSide2 = lineSide2;
         }
 
         @Override
@@ -144,7 +166,7 @@ public interface RoadWithJointLine extends Road {
         @Override
         public CraftingRecipeJsonBuilder getPaintingRecipe(Block base, Block self) {
             final String pattern1 = switch (lineTypeSide) {
-                case NORMAL -> " a ";
+                case NORMAL, TAXI -> " a ";
                 case DOUBLE -> "a a";
                 case THICK -> "aaa";
                 default -> throw new UnsupportedOperationException("Unsupported lineTypeSide for recipe pattern: " + lineTypeSide);
@@ -166,5 +188,4 @@ public interface RoadWithJointLine extends Road {
             return recipe;
         }
     }
-
 }

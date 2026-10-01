@@ -107,7 +107,7 @@ public interface RoadWithStraightLine extends Road {
         @Override
         public CraftingRecipeJsonBuilder getPaintingRecipe(Block base, Block self) {
             final String[] patterns = switch (lineType) {
-                case NORMAL -> new String[]{
+                case NORMAL, THIN, TAXI -> new String[]{
                         " * ",
                         "XXX",
                         " * "

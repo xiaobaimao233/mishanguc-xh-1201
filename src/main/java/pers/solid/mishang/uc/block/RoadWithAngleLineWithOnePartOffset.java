@@ -45,21 +45,21 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
   @Override
   default BlockState rotateRoad(BlockState state, BlockRotation rotation) {
     return RoadWithAngleLine.super
-        .rotateRoad(state, rotation)
-        .with(
-            AXIS,
-            Util.make(
-                () -> {
-                  final Direction.Axis axis = state.get(AXIS);
-                  return switch (rotation) {
-                    case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (axis) {
-                      case X -> (Direction.Axis.Z);
-                      case Z -> (Direction.Axis.X);
-                      default -> axis;
-                    };
-                    default -> axis;
-                  };
-                }));
+            .rotateRoad(state, rotation)
+            .with(
+                    AXIS,
+                    Util.make(
+                            () -> {
+                              final Direction.Axis axis = state.get(AXIS);
+                              return switch (rotation) {
+                                case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (axis) {
+                                  case X -> (Direction.Axis.Z);
+                                  case Z -> (Direction.Axis.X);
+                                  default -> axis;
+                                };
+                                default -> axis;
+                              };
+                            }));
   }
 
   @Override
@@ -75,20 +75,20 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
   @Override
   default BlockState withPlacementState(BlockState state, ItemPlacementContext ctx) {
     return RoadWithAngleLine.super
-        .withPlacementState(state, ctx)
-        .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
+            .withPlacementState(state, ctx)
+            .with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
   }
 
   @Override
   default void appendRoadTooltip(
-      ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+          ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
     RoadWithAngleLine.super.appendRoadTooltip(stack, world, tooltip, options);
     tooltip.add(
-        TextBridge.translatable("block.mishanguc.tooltip.road_with_angle_line_with_one_part_offset.1")
-            .formatted(Formatting.GRAY));
+            TextBridge.translatable("block.mishanguc.tooltip.road_with_angle_line_with_one_part_offset.1")
+                    .formatted(Formatting.GRAY));
     tooltip.add(
-        TextBridge.translatable("block.mishanguc.tooltip.road_with_angle_line_with_one_part_offset.2")
-            .formatted(Formatting.GRAY));
+            TextBridge.translatable("block.mishanguc.tooltip.road_with_angle_line_with_one_part_offset.2")
+                    .formatted(Formatting.GRAY));
   }
 
   int offsetOutwards();
@@ -99,7 +99,12 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
 
     public Impl(Settings settings, LineColor lineColor, boolean isBevel, String lineSide, String lineTop, int offsetOutwards) {
       super(settings, lineColor, LineType.NORMAL, lineSide, isBevel, lineTop);
-      this.lineSide2 = MishangUtils.composeStraightLineTexture(lineColor, LineType.NORMAL);
+      // 从 lineSide 推导 lineSide2：
+      // 1. 去掉 "offset_"（例：yellow_offset_straight_edge_line → yellow_straight_edge_line）
+      // 2. 去掉末尾的 "2"（例：yellow_straight_edge_line2 → yellow_straight_edge_line）
+      // 这样原版 OUT/IN 仍指向 yellow_straight_line（行为不变），
+      // 新加的 EDGE 版本 OUT/IN 则统一指向 yellow_straight_edge_line。
+      this.lineSide2 = lineSide.replace("offset_", "").replaceAll("2$", "");
       this.offsetOutwards = offsetOutwards;
     }
 
@@ -111,9 +116,9 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
     @Override
     protected <B extends Block & Road> void registerBaseOrSlabModels(B road, BlockStateModelGenerator blockStateModelGenerator) {
       final FasterTextureMap textures = new FasterTextureMap().base("asphalt")
-          .lineSide(lineSide)
-          .lineSide2(lineSide2)
-          .lineTop(lineTop);
+              .lineSide(lineSide)
+              .lineSide2(lineSide2)
+              .lineTop(lineTop);
       final Identifier modelId = road.uploadModel("_with_angle_line", textures, blockStateModelGenerator, MishangucTextureKeys.BASE, MishangucTextureKeys.LINE_SIDE, MishangucTextureKeys.LINE_SIDE2, MishangucTextureKeys.LINE_TOP);
       final Identifier mirroredModelId = road.uploadModel("_with_angle_line_mirrored", "_mirrored", textures, blockStateModelGenerator, MishangucTextureKeys.BASE, MishangucTextureKeys.LINE_SIDE, MishangucTextureKeys.LINE_SIDE2, MishangucTextureKeys.LINE_TOP);
       final BlockStateVariantMap.DoubleProperty<HorizontalCornerDirection, Direction.Axis> map = BlockStateVariantMap.create(FACING, AXIS);
@@ -122,14 +127,14 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
         final Direction offsetDirection1 = direction.rotateYClockwise();
         final Direction offsetDirection2 = direction.rotateYCounterclockwise();
         map.register(
-            HorizontalCornerDirection.fromDirections(direction, offsetDirection1),
-            direction.getAxis(),
-            BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(MishangUtils.DIRECTION_Y_VARIANT, direction));
+                HorizontalCornerDirection.fromDirections(direction, offsetDirection1),
+                direction.getAxis(),
+                BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(MishangUtils.DIRECTION_Y_VARIANT, direction));
         map.register(
-            HorizontalCornerDirection.fromDirections(direction, offsetDirection2),
-            direction.getAxis(),
-            BlockStateVariant.create().put(VariantSettings.MODEL, mirroredModelId)
-                .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
+                HorizontalCornerDirection.fromDirections(direction, offsetDirection2),
+                direction.getAxis(),
+                BlockStateVariant.create().put(VariantSettings.MODEL, mirroredModelId)
+                        .put(MishangUtils.DIRECTION_Y_VARIANT, direction));
       }
       blockStateModelGenerator.blockStateCollector.accept(road.composeState(VariantsBlockStateSupplier.create(road).coordinate(map)));
     }
@@ -140,13 +145,13 @@ public interface RoadWithAngleLineWithOnePartOffset extends RoadWithAngleLine {
         throw new UnsupportedOperationException("Recipes for bevel line with one part offset is not supported!");
       }
       return ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, self, 3)
-          .pattern("  *")
-          .pattern("*XX")
-          .pattern(" X ")
-          .input('*', lineColor.getIngredient())
-          .input('X', base)
-          .criterion("has_paint", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
-          .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
+              .pattern("  *")
+              .pattern("*XX")
+              .pattern(" X ")
+              .input('*', lineColor.getIngredient())
+              .input('X', base)
+              .criterion("has_paint", RecipeProvider.conditionsFromTag(lineColor.getIngredient()))
+              .criterion(RecipeProvider.hasItem(base), RecipeProvider.conditionsFromItem(base));
     }
   }
 }
