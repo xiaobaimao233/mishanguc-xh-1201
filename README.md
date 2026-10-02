@@ -11,3 +11,6 @@
 
 许可证：LGPL-3.0<br>
 原始代码 © SolidBlock-cn 及贡献者。修改：xiaobaimao233，2026年9月29日。
+
+## 最新版本
+最新测试版：[v0.1.0-beta.1+xh.1.6.5](https://github.com/xiaobaimao233/mishanguc-xh-1201/releases/tag/v0.1.0-beta.1+xh.1.6.5)
