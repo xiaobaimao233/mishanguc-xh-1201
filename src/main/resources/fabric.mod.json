@@ -3,16 +3,19 @@
   "id": "mishanguc",
   "version": "${version}",
   "name": "Mishang Urban Construction - XH Edition",
-  "description": "The mod provides an amount of blocks and items that make a beautiful city, which includes roads, signs, lights, handrails, colored blocks and some useful tools. Thank you for using this mod. I'm looking forward to your suggestions. Modified for XinghaiCity Server",
+  "description": "The mod provides an amount of blocks and items that make a beautiful city, which includes roads, signs, lights, handrails, colored blocks and some useful tools. Thank you for using this mod. I'm looking forward to your suggestions. This is an unofficial fork modified for XinghaiCity Server.",
   "authors": [
-    "SolidBlock, Modified by xiaobaimao233"
+    "SolidBlock"
+  ],
+  "contributors": [
+    "xiaobaimao233"
   ],
   "contact": {
     "sources": "https://github.com/xiaobaimao233/mishanguc-xh-1201",
     "issues": "https://github.com/xiaobaimao233/mishanguc-xh-1201/issues",
     "homepage": "https://github.com/xiaobaimao233/mishanguc-xh-1201"
   },
-  "license": "LGPLv3",
+  "license": "LGPL-3.0-only",
   "icon": "assets/mishanguc/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -38,9 +41,8 @@
     "branch": "1.20",
     "modmenu": {
       "links": {
-        "mcmod.cn": "https://www.mcmod.cn/class/5743.html",
-        "modmenu.modrinth": "https://modrinth.com/mod/mishang-urban-construction",
-        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/mishang-urban-construction"
+        "sources": "https://github.com/xiaobaimao233/mishanguc-xh-1201",
+        "issues": "https://github.com/xiaobaimao233/mishanguc-xh-1201/issues"
       }
     }
   }

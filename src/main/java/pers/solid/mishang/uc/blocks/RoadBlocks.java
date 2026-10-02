@@ -61,8 +61,9 @@ public final class RoadBlocks extends MishangucBlocks {
     /**
      * 白色潮汐车道停止线。
      */
+    @ApiStatus.AvailableSince("0.2.4")
     @Cutout
-    public static final RoadWithStraightLine.Impl ROAD_WITH_WHITE_REV_LINE = new RoadWithStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_rev_line");
+    public static final RoadWithOffsetStraightLine.Impl ROAD_WITH_WHITE_REV_LINE = new RoadWithOffsetStraightLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_rev_line", 1);
     /**
      * 白色粗线。
      */
@@ -295,7 +296,12 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_RA_EDGE_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE, false, "white_right_angle_edge_line");
     /**
-     * 白色边缘直角。
+     * 白色边缘细直角。
+     */
+    @Cutout
+        public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_RA_THIN_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.THIN, false, "white_right_angle_thin_line");
+    /**
+     * 白色的士上下客直角。
      */
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_RA_TAXI_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.TAXI, false, "white_right_angle_taxi_line");
@@ -421,25 +427,29 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
-    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_STOP_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_stop_line");
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_STOP_LINE =
+            new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE,
+                    "white_straight_stop_line",
+                    true,
+                    "white_bevel_angle_stop_line");
     /**
      * 白色减速让行斜线。
      */
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
-    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_GIVEWAY_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_gw_line");
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_GIVEWAY_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_gw_line", true, "white_bevel_angle_gw_line");
     /**
      * 白色窄间距双斜线。
      */
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
-    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_DOUBLE_LINE2 = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_double_line2");
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_DOUBLE_LINE2 = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_double_line2", true, "white_bevel_angle_double_line2");
     /**
      * 白色宽间距双斜线。
      */
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
-    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_DOUBLE_LINE3 = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_double_line3");
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_DOUBLE_LINE3 = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, "white_straight_double_line3", true, "white_bevel_angle_double_line3");
     /**
      * 白色粗斜线。
      */
@@ -464,6 +474,18 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_DOUBLE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, true, "yellow_bevel_angle_double_line");
     /**
+     * 黄色窄双斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_DOUBLE_LINE2 = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, "yellow_straight_double_line2", true, "yellow_bevel_angle_double_line2");
+    /**
+     * 黄色宽双斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_DOUBLE_LINE3 = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.DOUBLE, "yellow_straight_double_line3", true, "yellow_bevel_angle_double_line3");
+    /**
      * 黄色粗斜线。
      */
     @ApiStatus.AvailableSince("1.0.2")
@@ -474,12 +496,18 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
-    public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_EDGE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.THICK, true, "yellow_bevel_angle_edge_line");
+    public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_EDGE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.EDGE, true, "yellow_bevel_angle_edge_line");
     /**
      * 作业区斜线。
      */
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_ORANGE_BA_LINE = new RoadWithAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL, true, "orange_bevel_angle_line");
+    /**
+     * 作业区双斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_ORANGE_BA_DOUBLE_LINE = new RoadWithAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.DOUBLE, true, "orange_bevel_angle_double_line");
     /**
      * 红色粗斜线。
      */
@@ -543,6 +571,12 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLineWithTwoPartsOffset.Impl ROAD_WITH_WHITE_OFFSET_OUT_BA_EDGE_LINE = new RoadWithAngleLineWithTwoPartsOffset.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL, true, "white_offset_out_bevel_angle_edge_line", "white_offset_straight_edge_line", "white_offset_straight_edge_line2", 2);
     /**
+     * 白色出入口两边均向外偏移的斜线。
+     */
+    @ApiStatus.AvailableSince("1.1.0")
+    @Cutout
+    public static final RoadWithAngleLineWithTwoPartsOffset.Impl ROAD_WITH_WHITE_OFFSET_OUT_BA_ACES_LINE = new RoadWithAngleLineWithTwoPartsOffset.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL, true, "white_offset_out_bevel_angle_access_line", "white_offset_straight_access_line", "white_offset_straight_access_line2", 2);
+    /**
      * 白色两边均向内偏移的斜线。
      */
     @ApiStatus.AvailableSince("1.1.0")
@@ -554,6 +588,12 @@ public final class RoadBlocks extends MishangucBlocks {
     @ApiStatus.AvailableSince("1.1.0")
     @Cutout
     public static final RoadWithAngleLineWithTwoPartsOffset.Impl ROAD_WITH_WHITE_OFFSET_IN_BA_EDGE_LINE = new RoadWithAngleLineWithTwoPartsOffset.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL, true, "white_offset_in_bevel_angle_edge_line", "white_offset_straight_edge_line2", "white_offset_straight_edge_line", -2);
+    /**
+     * 白色出入口两边均向内偏移的斜线。
+     */
+    @ApiStatus.AvailableSince("1.1.0")
+    @Cutout
+    public static final RoadWithAngleLineWithTwoPartsOffset.Impl ROAD_WITH_WHITE_OFFSET_IN_BA_ACES_LINE = new RoadWithAngleLineWithTwoPartsOffset.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.SPECIAL, true, "white_offset_in_bevel_angle_access_line", "white_offset_straight_access_line2", "white_offset_straight_access_line", -2);
     /**
      * 两边均向外偏移的斜禁停线。
      */
@@ -850,7 +890,16 @@ public final class RoadBlocks extends MishangucBlocks {
     public static final RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture ROAD_WITH_WHITE_BI_BA_LINE = new RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL);
     @ApiStatus.AvailableSince("1.1.0")
     @Cutout
+    public static final RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture ROAD_WITH_WHITE_BI_BA_EDGE_LINE = new RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE);
+    @ApiStatus.AvailableSince("1.1.0")
+    @Cutout
     public static final RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture ROAD_WITH_YELLOW_BI_BA_LINE = new RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.NORMAL);
+    @ApiStatus.AvailableSince("1.1.0")
+    @Cutout
+    public static final RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture ROAD_WITH_YELLOW_BI_BA_EDGE_LINE = new RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.EDGE);
+    @ApiStatus.AvailableSince("1.1.0")
+    @Cutout
+    public static final RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture ROAD_WITH_ORANGE_BI_BA_LINE = new RoadWithTwoBevelAngleLines.ImplWithTwoLayerTexture(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL);
     @ApiStatus.AvailableSince("1.1.0")
     @Cutout
     public static final RoadWithTwoBevelAngleLines.ImplWithThreeLayerTexture ROAD_WITH_WS_AND_BI_BA_LINE = new RoadWithTwoBevelAngleLines.ImplWithThreeLayerTexture(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL);
@@ -865,12 +914,29 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithStraightAndAngleLine.Impl ROAD_WITH_WHITE_S_BA_LINE = new RoadWithStraightAndAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.NORMAL);
     /**
+     * 边缘白色直线+斜线。
+     */
+    @Cutout
+    public static final RoadWithStraightAndAngleLine.Impl ROAD_WITH_WHITE_S_BA_EDGE_LINE = new RoadWithStraightAndAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE);
+    /**
      * 黄色直线+斜线
      */
     @ApiStatus.AvailableSince("0.2.0")
     @Cutout
     public static final RoadWithStraightAndAngleLine.Impl ROAD_WITH_YELLOW_S_BA_LINE = new RoadWithStraightAndAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.NORMAL);
+    /**
+     * 边缘黄色直线+斜线
+     */
+    @ApiStatus.AvailableSince("0.2.0")
+    @Cutout
+    public static final RoadWithStraightAndAngleLine.Impl ROAD_WITH_YELLOW_S_BA_EDGE_LINE = new RoadWithStraightAndAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.EDGE);
 
+    /**
+     * 作业区橙色直线+斜线
+     */
+    @ApiStatus.AvailableSince("0.2.0")
+    @Cutout
+    public static final RoadWithStraightAndAngleLine.Impl ROAD_WITH_ORANGE_S_BA_LINE = new RoadWithStraightAndAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL);
     /**
      * 白色直线+黄色斜线
      */

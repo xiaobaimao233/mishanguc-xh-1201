@@ -401,7 +401,12 @@ public class MishangUtils {
   }
 
   public static String composeAngleLineTexture(LineColor lineColor, LineType lineType, boolean bevel) {
-    return lineColor.asString() + "_" + (lineType == LineType.NORMAL ? "" : lineColor.asString() + "_") + (bevel ? "bevel" : "right") + "_angle_line";
+    final String base = lineColor.asString() + "_" + (bevel ? "bevel" : "right") + "_angle";
+    if (lineType == LineType.NORMAL) {
+      return base + "_line";
+    } else {
+      return base + "_" + lineType.asString() + "_line";
+    }
   }
 
   public static int readColorFromNbtElement(NbtElement nbtColor) {

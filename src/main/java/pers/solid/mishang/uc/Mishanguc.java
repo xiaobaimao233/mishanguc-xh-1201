@@ -637,19 +637,6 @@ public class Mishanguc implements ModInitializer {
         registerColorfulBlocks();
 
         Registry.register(Registries.POINT_OF_INTEREST_TYPE, RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, id("nether_portal")), new PointOfInterestType(ImmutableSet.copyOf(ColoredBlocks.COLORED_NETHER_PORTAL.getStateManager().getStates()), 0, 1));
-
-        // ==== 临时调试代码：打印所有 mishanguc 命名空间方块的翻译键 ====
-        // 用于检查语言文件缺失项，调试完后可以删除。
-        MISHANG_LOGGER.info("===== BEGIN mishanguc block translation keys =====");
-        int totalCount = 0;
-        for (Block block : Registries.BLOCK) {
-            Identifier blockId = Registries.BLOCK.getId(block);
-            if ("mishanguc".equals(blockId.getNamespace())) {
-                MISHANG_LOGGER.info("[LANG_KEY] {}", block.getTranslationKey());
-                totalCount++;
-            }
-        }
-        MISHANG_LOGGER.info("===== END mishanguc block translation keys, total={} =====", totalCount);
     }
 
     private static void registerColorfulBlocks() {
