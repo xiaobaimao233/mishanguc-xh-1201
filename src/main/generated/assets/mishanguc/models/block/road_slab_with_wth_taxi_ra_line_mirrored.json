@@ -1,0 +1,9 @@
+{
+  "parent": "mishanguc:block/road_slab_with_angle_line_mirrored",
+  "textures": {
+    "base": "mishanguc:block/asphalt",
+    "line_side": "mishanguc:block/white_straight_thin_line",
+    "line_side2": "mishanguc:block/white_straight_thin_line",
+    "line_top": "mishanguc:block/white_thin_and_taxi_right_angle_line"
+  }
+}

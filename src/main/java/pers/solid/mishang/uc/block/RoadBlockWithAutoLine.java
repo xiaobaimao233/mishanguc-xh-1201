@@ -16,6 +16,7 @@ import net.minecraft.util.math.Direction;
 import org.apache.commons.lang3.ObjectUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pers.solid.mishang.uc.blocks.RoadBlocks;
 import pers.solid.mishang.uc.data.FasterTextureMap;
 import pers.solid.mishang.uc.data.MishangucTextureKeys;
 import pers.solid.mishang.uc.util.*;
@@ -27,7 +28,7 @@ import java.util.Map;
 import static pers.solid.mishang.uc.blocks.RoadBlocks.*;
 
 /**
- * 具有自动连接功能的道路方块。关于本模组的所有道路方块，请参见 {@link pers.solid.mishang.uc.blocks.RoadBlocks}。
+ * 具有自动连接功能的道路方块。关于本模组的所有道路方块，请参见 {@link RoadBlocks}。
  */
 public class RoadBlockWithAutoLine extends AbstractRoadBlock implements RoadWithAutoLine {
   /**
@@ -232,7 +233,9 @@ public class RoadBlockWithAutoLine extends AbstractRoadBlock implements RoadWith
                   };
                   case RIGHT_ANGLE -> ROAD_WITH_YELLOW_RA_LINE;
                 };
-                case WHITE, NONE, UNKNOWN -> switch (type) {
+                  case ORANGE -> null;
+                  case RED -> null;
+                  case WHITE, NONE, UNKNOWN -> switch (type) {
                   case BEVEL -> switch (lineType) {
                     case DOUBLE -> ROAD_WITH_WHITE_BA_DOUBLE_LINE;
                     case THICK -> ROAD_WITH_WHITE_BA_THICK_LINE;
@@ -356,7 +359,9 @@ public class RoadBlockWithAutoLine extends AbstractRoadBlock implements RoadWith
               // 存在左右两侧标线不等的情况。
               final RoadWithJointLine.Impl block = switch (facingState.lineColor()) {
                 case YELLOW -> ROAD_WITH_YELLOW_TS_LINE;
-                case WHITE, UNKNOWN, NONE -> ROAD_WITH_WHITE_TS_LINE;
+                  case ORANGE -> null;
+                  case RED -> null;
+                  case WHITE, UNKNOWN, NONE -> ROAD_WITH_WHITE_TS_LINE;
               };
               return composeJointLine(block, facingDirection, facingOffset);
             }

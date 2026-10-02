@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "mishanguc:road_with_o_od_ra_line",
+  "key": {
+    "X": {
+      "item": "mishanguc:road_block"
+    },
+    "a": {
+      "tag": "c:orange_dyes"
+    },
+    "b": {
+      "tag": "c:orange_dyes"
+    }
+  },
+  "pattern": [
+    "ba ",
+    " XX",
+    "bX "
+  ],
+  "result": {
+    "count": 3,
+    "item": "mishanguc:road_with_o_od_ra_line"
+  },
+  "show_notification": true
+}

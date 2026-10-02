@@ -174,11 +174,28 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
             "bXX",
             " X "
     };
+    private static final String[] THICK_AND_EDGE_PATTERN = {
+            " ab",
+            "bXX",
+            " Xb"
+    };
+    private static final String[] THIN_AND_TAXI_PATTERN = {
+            " ab",
+            "bX ",
+            " X "
+    };
+    private static final String[] THIN_PATTERN = {
+            "bab",
+            "bX ",
+            " X "
+    };
 
     private static String[] composePattern(LineType lineType, LineType lineType2) {
       if (lineType == LineType.THICK) {
         if (lineType2 == LineType.DOUBLE) {
           return THICK_AND_DOUBLE_PATTERN;
+        } else if (lineType2 == LineType.EDGE) {
+          return THICK_AND_EDGE_PATTERN;
         } else if (lineType2 == LineType.NORMAL) {
           return HALF_THICK_PATTERN;
         }
@@ -193,6 +210,12 @@ public interface RoadWithDiffAngleLine extends RoadWithAngleLine {
           return DOUBLE_AND_DOUBLE_PATTERN;
         } else if (lineType2 == LineType.NORMAL) {
           return DOUBLE_AND_NORMAL_PATTERN;
+        }
+      } else if (lineType == LineType.THIN) {
+        if (lineType2 == LineType.TAXI) {
+          return THIN_AND_TAXI_PATTERN;
+        } else if (lineType2 == LineType.THIN) {
+          return THIN_PATTERN;
         }
       }
       throw new IllegalArgumentException(String.format("Cannot determine patterns for [%s, %s]", lineType.asString(), lineType2.asString()));

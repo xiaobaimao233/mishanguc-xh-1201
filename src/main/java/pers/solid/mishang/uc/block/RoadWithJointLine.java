@@ -168,7 +168,7 @@ public interface RoadWithJointLine extends Road {
             final String pattern1 = switch (lineTypeSide) {
                 case NORMAL, TAXI -> " a ";
                 case DOUBLE -> "a a";
-                case THICK -> "aaa";
+                case THICK, THIN -> "aaa";
                 default -> throw new UnsupportedOperationException("Unsupported lineTypeSide for recipe pattern: " + lineTypeSide);
             };
             Block base2 = RoadBlocks.getRoadBlockWithLine(lineColor, lineType);

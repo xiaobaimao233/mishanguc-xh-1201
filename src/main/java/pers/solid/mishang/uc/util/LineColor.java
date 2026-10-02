@@ -12,6 +12,8 @@ import net.minecraft.util.StringIdentifiable;
 public enum LineColor implements StringIdentifiable {
   WHITE("white", ConventionalItemTags.WHITE_DYES),
   YELLOW("yellow", ConventionalItemTags.YELLOW_DYES),
+  ORANGE("orange", ConventionalItemTags.ORANGE_DYES),
+  RED("red", ConventionalItemTags.RED_DYES),
   UNKNOWN("unknown", null),
   NONE("none", null);
 

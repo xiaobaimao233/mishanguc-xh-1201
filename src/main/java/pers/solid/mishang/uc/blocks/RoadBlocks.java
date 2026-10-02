@@ -91,6 +91,12 @@ public final class RoadBlocks extends MishangucBlocks {
                     "white_straight_edge_dash_line"
             );
     /**
+     * 白色边缘虚线终点。
+     */
+    @Cutout
+    public static final RoadWithOffsetEndLine.Impl ROAD_WITH_WHITE_EDGE_DASH_E_LINE =
+            new RoadWithOffsetEndLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.EDGE, "white_straight_edge_dash_end_line", "white_straight_edge_line", 2, true);
+    /**
      * 白色窄线。
      */
     @Cutout
@@ -170,6 +176,21 @@ public final class RoadBlocks extends MishangucBlocks {
                     LineType.EDGE,
                     "yellow_straight_edge_line"
             );
+    /**
+     * 作业区直线
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_ORANGE_LINE = new RoadWithStraightLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL, "orange_straight_line");
+    /**
+     * 作业区双线
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_ORANGE_DOUBLE_LINE = new RoadWithStraightLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.DOUBLE, "orange_straight_double_line");
+    /**
+     * 红色粗直线
+     */
+    @Cutout
+    public static final RoadWithStraightLine.Impl ROAD_WITH_RED_THICK_LINE = new RoadWithStraightLine.Impl(RED_ROAD_SETTINGS, LineColor.RED, LineType.THICK, "red_straight_thick_line");
     /**
      * <h3>混色双线</h3>
      * 白色和黄色混合的双直线道路。
@@ -289,6 +310,11 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_RA_EDGE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.EDGE, false, "yellow_right_angle_edge_line");
     /**
+     * 作业区直角
+     */
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_ORANGE_RA_LINE = new RoadWithAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL, false, "orange_right_angle_line");
+    /**
      * 白色加黄色直角
      */
     @Cutout
@@ -298,6 +324,16 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @Cutout
     public static final RoadWithDiffAngleLine.Impl ROAD_WITH_WT_N_RA_LINE = new RoadWithDiffAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.THICK, LineType.NORMAL, false, "white_straight_line", "white_thick_and_normal_right_angle_line");
+    /**
+     * 白色粗线加白色边缘直角
+     */
+    @Cutout
+    public static final RoadWithDiffAngleLine.Impl ROAD_WITH_WT_E_RA_LINE = new RoadWithDiffAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.THICK, LineType.EDGE, false, "white_straight_edge_line", "white_thick_and_edge_right_angle_line");
+    /**
+     * 白色细线加白色的士上下客直角
+     */
+    @Cutout
+    public static final RoadWithDiffAngleLine.Impl ROAD_WITH_WTH_TAXI_RA_LINE = new RoadWithDiffAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.THIN, LineType.TAXI, false, "white_straight_thin_line", "white_thin_and_taxi_right_angle_line");
     /**
      * 白色粗线加黄色直角
      */
@@ -323,6 +359,11 @@ public final class RoadBlocks extends MishangucBlocks {
                     "white_straight_gw_line",          // lineSide：白色侧面
                     "yellow_straight_line",       // lineSide2：黄色侧面
                     "white_gw_and_yellow_right_angle_line");
+    /**
+     * 作业区双线直角
+     */
+    @Cutout
+    public static final RoadWithDiffAngleLine.Impl ROAD_WITH_O_OD_RA_LINE = new RoadWithDiffAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineColor.ORANGE, LineType.NORMAL, LineType.DOUBLE, false, "orange_straight_double_line", "orange_double_right_angle_line");
     /**
      * 白色加黄色双线直角
      */
@@ -376,6 +417,18 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_DOUBLE_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_double_line");
     /**
+     * 白色停车让行斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_STOP_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_stop_line");
+    /**
+     * 白色减速让行斜线。
+     */
+    @ApiStatus.AvailableSince("1.0.2")
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_WHITE_BA_GIVEWAY_LINE = new RoadWithAngleLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineType.DOUBLE, true, "white_bevel_angle_gw_line");
+    /**
      * 白色窄间距双斜线。
      */
     @ApiStatus.AvailableSince("1.0.2")
@@ -422,6 +475,16 @@ public final class RoadBlocks extends MishangucBlocks {
     @ApiStatus.AvailableSince("1.0.2")
     @Cutout
     public static final RoadWithAngleLine.Impl ROAD_WITH_YELLOW_BA_EDGE_LINE = new RoadWithAngleLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineType.THICK, true, "yellow_bevel_angle_edge_line");
+    /**
+     * 作业区斜线。
+     */
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_ORANGE_BA_LINE = new RoadWithAngleLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineType.NORMAL, true, "orange_bevel_angle_line");
+    /**
+     * 红色粗斜线。
+     */
+    @Cutout
+    public static final RoadWithAngleLine.Impl ROAD_WITH_RED_BA_THICK_LINE = new RoadWithAngleLine.Impl(RED_ROAD_SETTINGS, LineColor.RED, LineType.THICK, true, "red_bevel_angle_thick_line");
     /**
      * <h3>有偏移的直角</h3>
      * 白色一侧向外偏移的直角。
@@ -596,6 +659,11 @@ public final class RoadBlocks extends MishangucBlocks {
     @Cutout
     public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_TS_LINE = new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.NORMAL, LineType.NORMAL, "white_joint_line");
     /**
+     * 白色T字形细线。
+     */
+    @Cutout
+    public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_TS_THIN_LINE = new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.THIN, LineType.THIN, "white_joint_thin_line");
+    /**
      * 白色T字形出租车上下客线。
      */
     @Cutout
@@ -605,6 +673,11 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @Cutout
     public static final RoadWithJointLine.Impl ROAD_WITH_YELLOW_TS_LINE = new RoadWithJointLine.Impl(YELLOW_ROAD_SETTINGS, LineColor.YELLOW, LineColor.YELLOW, LineType.NORMAL, LineType.NORMAL, "yellow_joint_line");
+    /**
+     * 作业区T字形线。
+     */
+    @Cutout
+    public static final RoadWithJointLine.Impl ROAD_WITH_ORANGE_TS_LINE = new RoadWithJointLine.Impl(ORANGE_ROAD_SETTINGS, LineColor.ORANGE, LineColor.ORANGE, LineType.NORMAL, LineType.NORMAL, "orange_joint_line");
     /**
      * <p>
      * T字形，其中单侧部分为双线。
@@ -628,9 +701,19 @@ public final class RoadBlocks extends MishangucBlocks {
     public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_STOP_TS_LINE =
             new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
                     LineType.DOUBLE, LineType.NORMAL,
-                    "white_straight_stop_line",   // lineSide：主干线用 STOP
+                    "white_straight_stop_line",   // lineSide：主干线
                     "white_straight_line",        // lineSide2：侧线
                     "white_stop_joint_line");
+    /**
+     * 边缘T字形，直线部分为停车让行线。
+     */
+    @Cutout
+    public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_STOP_TS_EDGE_LINE =
+            new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
+                    LineType.DOUBLE, LineType.NORMAL,
+                    "white_straight_stop_line",   // lineSide：主干线
+                    "white_straight_edge_line",        // lineSide2：侧线
+                    "white_stop_joint_with_edge_side");
     /**
      * T字形，直线部分为减速让行线。
      */
@@ -638,7 +721,7 @@ public final class RoadBlocks extends MishangucBlocks {
     public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_GW_TS_LINE =
             new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
                     LineType.DOUBLE, LineType.NORMAL,
-                    "white_straight_gw_line",   // lineSide：主干线用 STOP
+                    "white_straight_gw_line",   // lineSide：主干线
                     "white_straight_line",        // lineSide2：侧线
                     "white_gw_joint_line");
     /**
@@ -648,7 +731,7 @@ public final class RoadBlocks extends MishangucBlocks {
     public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_GW_TS_EDGE_LINE =
             new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
                     LineType.DOUBLE, LineType.NORMAL,
-                    "white_straight_gw_line",   // lineSide：主干线用 STOP
+                    "white_straight_gw_line",   // lineSide：主干线
                     "white_straight_edge_line",        // lineSide2：侧线
                     "white_gw_joint_line_with_edge_side");
     /**
@@ -656,6 +739,26 @@ public final class RoadBlocks extends MishangucBlocks {
      */
     @Cutout
     public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_THICK_TS_LINE = new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE, LineType.THICK, LineType.NORMAL, "white_thick_joint_line");
+    /**
+     * 边缘线T字形，直线部分为粗线。
+     */
+    @Cutout
+    public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_THICK_TS_EDGE_LINE =
+            new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
+                    LineType.THICK, LineType.NORMAL,
+                    "white_straight_thick_line",   // lineSide：主干线
+                    "white_straight_edge_line",        // lineSide2：侧线
+                    "white_thick_joint_line_with_edge_side");
+    /**
+     * 的士上下客T字形，直线部分为细线。
+     */
+    @Cutout
+    public static final RoadWithJointLine.Impl ROAD_WITH_WHITE_THIN_TS_TAXI_LINE =
+            new RoadWithJointLine.Impl(WHITE_ROAD_SETTINGS, LineColor.WHITE, LineColor.WHITE,
+                    LineType.THIN, LineType.TAXI,
+                    "white_straight_thin_line",   // lineSide：主干线
+                    "white_straight_taxi_line",        // lineSide2：侧线
+                    "white_thin_joint_line_with_taxi_side");
     /**
      * <h3>无偏移异色</h3>
      * 黄色加白色。
@@ -872,6 +975,24 @@ public final class RoadBlocks extends MishangucBlocks {
                 case NORMAL -> ROAD_WITH_YELLOW_LINE;
                 case DOUBLE -> ROAD_WITH_YELLOW_DOUBLE_LINE;
                 case THICK -> ROAD_WITH_YELLOW_THICK_LINE;
+                case EDGE -> ROAD_WITH_YELLOW_EDGE_LINE;
+                default -> throw new UnsupportedOperationException(
+                        String.format("Cannot determine yellow block with [type=%s]", lineType.asString())
+                );
+            };
+            case ORANGE -> switch (lineType) {
+                case NORMAL -> ROAD_WITH_ORANGE_LINE;
+                case DOUBLE -> ROAD_WITH_YELLOW_DOUBLE_LINE;
+                case THICK -> ROAD_WITH_YELLOW_THICK_LINE;
+                case EDGE -> ROAD_WITH_YELLOW_EDGE_LINE;
+                default -> throw new UnsupportedOperationException(
+                        String.format("Cannot determine yellow block with [type=%s]", lineType.asString())
+                );
+            };
+            case RED -> switch (lineType) {
+                case NORMAL -> ROAD_WITH_YELLOW_LINE;
+                case DOUBLE -> ROAD_WITH_YELLOW_DOUBLE_LINE;
+                case THICK -> ROAD_WITH_RED_THICK_LINE;
                 case EDGE -> ROAD_WITH_YELLOW_EDGE_LINE;
                 default -> throw new UnsupportedOperationException(
                         String.format("Cannot determine yellow block with [type=%s]", lineType.asString())
